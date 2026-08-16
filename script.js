@@ -89,7 +89,7 @@
       width: '1',
       videoId: PLAYLIST[0].id,
       playerVars: {
-        autoplay: 0,
+        autoplay: 1,
         controls: 0,
         disablekb: 1,
         fs: 0,
@@ -109,7 +109,22 @@
     ytPlayer.setVolume(80);
     updateTrackInfo(0);
     buildQueueList();
+    // Attempt autoplay immediately
+    try {
+      ytPlayer.playVideo();
+    } catch (e) {
+      console.log('Autoplay blocked by browser, waiting for user gesture.');
+    }
   }
+
+  // Global first-interaction fallback for strict browser autoplay policies
+  function handleFirstInteraction() {
+    if (!isPlaying && ytPlayer && ytPlayer.playVideo) {
+      ytPlayer.playVideo();
+    }
+  }
+  document.addEventListener('click', handleFirstInteraction, { once: true });
+  document.addEventListener('keydown', handleFirstInteraction, { once: true });
 
   function onPlayerStateChange(event) {
     switch (event.data) {
