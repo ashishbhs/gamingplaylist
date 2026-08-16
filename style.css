@@ -1463,13 +1463,28 @@ body {
   }
 
   .player-section {
-    padding: 0 var(--space-xs) var(--space-xs);
+    position: fixed;
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+    left: 12px;
+    right: 12px;
+    z-index: 90;
+    padding: 0;
   }
 
   .player-container {
-    padding: 10px;
+    padding: 10px 14px;
     gap: 8px;
-    border-radius: 12px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 25px rgba(168, 85, 247, 0.25);
+    background: rgba(15, 15, 30, 0.85);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+  }
+
+  .page-wrapper {
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding-bottom: 130px;
   }
 
   .player-track-info {
@@ -1477,22 +1492,31 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 10px;
+  }
+
+  .player-meta {
+    flex: 1;
+    min-width: 0;
+    text-align: left;
   }
 
   .player-art {
     width: 40px;
     height: 40px;
-    border-radius: 6px;
+    border-radius: 8px;
   }
 
   .player-title {
-    font-size: 11px;
-    max-width: 180px;
+    font-size: 12px;
+    max-width: 100%;
+    text-align: left;
   }
 
   .player-artist {
-    font-size: 9px;
-    max-width: 180px;
+    font-size: 10px;
+    max-width: 100%;
+    text-align: left;
   }
 
   .btn-queue-mobile {
