@@ -126,10 +126,13 @@
   document.addEventListener('click', handleFirstInteraction, { once: true });
   document.addEventListener('keydown', handleFirstInteraction, { once: true });
 
+  const autoplayNotice = document.getElementById('autoplay-notice');
+
   function onPlayerStateChange(event) {
     switch (event.data) {
       case YT.PlayerState.PLAYING:
         isPlaying = true;
+        if (autoplayNotice) autoplayNotice.classList.add('hidden');
         updatePlayIcon();
         startProgressTracking();
         break;
