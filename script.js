@@ -9,6 +9,18 @@
   // ---------- Curated Gaming Music Playlist (100% Embeddable) ----------
   // Each entry: { id: YouTube video ID, title, artist }
   const PLAYLIST = [
+    // Riot Games & Esports Anthems
+    { id: 'h7MYJghRWt0', title: 'Die For You', artist: 'VALORANT Champions 2021 ft. Grabbitz' },
+    { id: 'UOxkGD8qRB4', title: 'POP/STARS', artist: 'K/DA (League of Legends)' },
+    { id: 'r6zIGXun57U', title: 'Legends Never Die', artist: 'League of Legends ft. Against The Current' },
+    { id: 'fB8TyLTD7EE', title: 'RISE', artist: 'League of Legends ft. The Glitch Mob, Mako' },
+    { id: 'C3GouGa0noM', title: 'GODS', artist: 'League of Legends & NewJeans' },
+    { id: 'D9G1VOjN_84', title: 'Enemy', artist: 'Imagine Dragons x JID (Arcane)' },
+    { id: '3VTkBuxU4yk', title: 'MORE', artist: 'K/DA ft. Madison Beer, (G)I-DLE' },
+    { id: 'zF5Ddo9JdpY', title: 'Awaken', artist: 'League of Legends ft. Valerie Broussard' },
+    { id: 'i1IKnWDecwA', title: 'Phoenix', artist: 'League of Legends ft. Cailin Russo, Chrissy Costanza' },
+    { id: 'b_sQ9bMltGU', title: 'Ticking Away', artist: 'VALORANT Champions 2023 ft. Grabbitz & bbno$' },
+    // Electronic & Gaming Classics
     { id: '60ItHLz5WEA', title: 'On & On (feat. Daniel Levi)', artist: 'Cartoon' },
     { id: 'J2X5mJ3HDYE', title: 'Invincible', artist: 'DEAF KEV' },
     { id: 'AOeY-nDp7hI', title: 'Mortals (feat. Laura Brehm)', artist: 'Warriyo' },
@@ -364,10 +376,16 @@
   btnPrev.addEventListener('click', playPrev);
   btnVolume.addEventListener('click', toggleMute);
   btnShuffle.addEventListener('click', toggleShuffle);
-  btnQueue.addEventListener('click', () => {
+  const btnQueueMobile = document.getElementById('btn-queue-mobile');
+  const openQueue = () => {
     closeAllModals();
     queueOverlay.classList.add('active');
-  });
+  };
+
+  btnQueue.addEventListener('click', openQueue);
+  if (btnQueueMobile) {
+    btnQueueMobile.addEventListener('click', openQueue);
+  }
 
   volumeSlider.addEventListener('input', (e) => {
     setVolume(parseInt(e.target.value, 10));
